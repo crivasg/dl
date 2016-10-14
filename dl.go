@@ -16,6 +16,11 @@ func main() {
 	app.Usage = "Downloads files from the command line"
 	app.Version = "0.0.0"
 
+	app.Commands = []cli.Command{
+		fromFileCommand(),
+		fromArgsCommand(),
+	}
+
 	app.Run(os.Args)
 
 }
