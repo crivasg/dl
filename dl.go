@@ -6,7 +6,17 @@ import (
 	"os"
 )
 
+var app *cli.App
+
 func main() {
+
+	app = cli.NewApp()
+
+	app.Name = "dl"
+	app.Usage = "Downloads files from the command line"
+	app.Version = "0.0.0"
+
+	app.Run(os.Args)
 
 }
 
