@@ -10,10 +10,10 @@ var app *cli.App
 
 func fromFileCommand() cli.Command {
 	command := cli.Command{
-		Name: "fromFile",
-		//ShortName: "ff",
-		Usage:  "Obtain URLs from filename",
-		Action: fromFile,
+		Name:      "fromFile",
+		ShortName: "ff",
+		Usage:     "Obtain URLs from filename",
+		Action:    fromFile,
 	}
 	return command
 }
@@ -23,7 +23,7 @@ func fromFile(ctx *cli.Context) {
 		fmt.Printf("Incorrect usage\n")
 		return
 	}
-	fmt.Printf("form File %#v\n", ctx.Args())
+	fmt.Printf("from File %#v\n", ctx.Args())
 }
 
 func fromArgsCommand() cli.Command {
@@ -37,7 +37,7 @@ func fromArgsCommand() cli.Command {
 }
 
 func fromArgs(ctx *cli.Context) {
-	fmt.Printf("form File %#v\n", ctx.Args())
+	fmt.Printf("from Arguments %#v\n", ctx.Args())
 }
 
 func main() {
