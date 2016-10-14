@@ -10,48 +10,34 @@ var app *cli.App
 
 func fromFileCommand() cli.Command {
 	command := cli.Command{
-		Name:      "formFile",
-		ShortName: "ff",
-		Usage:     "Obtain URLs from filename",
-		Action:    fromFile,
-
-		Flags: []cli.Flag{
-			cli.StringFlag{
-				Name:  "filename",
-				Value: "",
-				Usage: "Filename containing the URLs to download",
-			},
-		},
+		Name: "fromFile",
+		//ShortName: "ff",
+		Usage:  "Obtain URLs from filename",
+		Action: fromFile,
 	}
 	return command
 }
 
 func fromFile(ctx *cli.Context) {
-	filename := ctx.String("filename")
-	fmt.Printf("fromFile %s\n", filename)
+	if len(ctx.Args()) != 1 {
+		fmt.Printf("Incorrect usage\n")
+		return
+	}
+	fmt.Printf("form File %#v\n", ctx.Args())
 }
 
 func fromArgsCommand() cli.Command {
 	command := cli.Command{
-		Name:      "formArgs",
+		Name:      "fromArgs",
 		ShortName: "fa",
 		Usage:     "Obtain URLs from command line arguments",
 		Action:    fromArgs,
-
-		Flags: []cli.Flag{
-			cli.StringFlag{
-				Name:  "arguments",
-				Value: "",
-				Usage: "URLs to download",
-			},
-		},
 	}
 	return command
 }
 
 func fromArgs(ctx *cli.Context) {
-	arguments := ctx.String("arguments")
-	fmt.Printf("fromArgs %s\n", arguments)
+	fmt.Printf("form File %#v\n", ctx.Args())
 }
 
 func main() {
