@@ -44,6 +44,12 @@ func main() {
 		return
 	}
 
+	url, err := getUrlsFromFile(*inputFile)
+	if err != nil {
+		fmt.Sprintf("%v\n", err)
+		return
+	}
+
 }
 
 // https://github.com/thbar/golang-playground/blob/master/download-files.go
