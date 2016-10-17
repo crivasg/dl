@@ -1,59 +1,26 @@
 package main
 
 import (
+	"flag"
 	"fmt"
-	"github.com/urfave/cli"
 	"os"
 )
 
-var app *cli.App
+var outputPath = flag.String("o", "", "Output folder")
+var inputFile = flag.String("f", "", "Path the the files containing the urls to download")
 
-func fromFileCommand() cli.Command {
-	command := cli.Command{
-		Name:      "fromFile",
-		ShortName: "ff",
-		Usage:     "Obtain URLs from filename",
-		Action:    fromFile,
-	}
-	return command
-}
-
-func fromFile(ctx *cli.Context) {
-	if len(ctx.Args()) != 1 {
-		fmt.Printf("Incorrect usage\n")
-		return
-	}
-	fmt.Printf("from File %#v\n", ctx.Args())
-}
-
-func fromArgsCommand() cli.Command {
-	command := cli.Command{
-		Name:      "fromArgs",
-		ShortName: "fa",
-		Usage:     "Obtain URLs from command line arguments",
-		Action:    fromArgs,
-	}
-	return command
-}
-
-func fromArgs(ctx *cli.Context) {
-	fmt.Printf("from Arguments %#v\n", ctx.Args())
+func usage() {
+	fmt.Printf(`%s: -f=<URLs Input File> -o=<Output Folder>
+`, os.Args[0])
 }
 
 func main() {
 
-	app = cli.NewApp()
-
-	app.Name = "dl"
-	app.Usage = "Downloads files from the command line"
-	app.Version = "0.0.0"
-
-	app.Commands = []cli.Command{
-		fromFileCommand(),
-		fromArgsCommand(),
+	flag.Parse()
+	if len(os.Args) != 2 {
+		usage()
+		return
 	}
-
-	app.Run(os.Args)
 
 }
 
