@@ -24,10 +24,8 @@ func main() {
 
 }
 
-// fromArgs
-// fromFile
-
 // https://github.com/thbar/golang-playground/blob/master/download-files.go
 // http://stackoverflow.com/questions/11692860/how-can-i-efficiently-download-a-large-file-using-go
 // https://gist.github.com/mitsuse/a45c99c7e405ed60e5ce
 // https://jawher.me/2015/01/13/parsing-command-line-arguments-shameless-plug-mowcli/
+// https://github.com/tealeg/csv2xlsx/blob/master/main.go
