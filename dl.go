@@ -4,9 +4,10 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"regexp"
 )
 
-var outputPath = flag.String("o", "", "Output folder")
+var outputPath = flag.String("o", "/tmp/", "Output folder")
 var inputFile = flag.String("f", "", "Path the the files containing the urls to download")
 
 func usage() {
