@@ -14,6 +14,27 @@ func usage() {
 `, os.Args[0])
 }
 
+func getUrlsFromFile(filename string) ([]string, error) {
+
+	file, err := os.Open(filename)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	var lines []string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		curr_line := strings.Trim(scanner.Text(), "\t ")
+		match, _ := regexp.MatchString("^htt(p|ps)://", curr_line)
+		if match == true {
+			lines = append(lines, curr_line)
+		}
+	}
+	return lines, scanner.Err()
+
+}
+
 func main() {
 
 	flag.Parse()
