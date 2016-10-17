@@ -46,11 +46,16 @@ func main() {
 		return
 	}
 
-	url, err := getUrlsFromFile(*inputFile)
+	urls, err := getUrlsFromFile(*inputFile)
 	if err != nil {
 		fmt.Sprintf("%v\n", err)
 		return
 	}
+
+	for _, url := range urls {
+		fmt.Sprintf("%s", url)
+	}
+	fmt.Sprintf("%s", "\n")
 
 }
 
