@@ -1,10 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
 	"os"
 	"regexp"
+	"strings"
 )
 
 var outputPath = flag.String("o", "/tmp/", "Output folder")
