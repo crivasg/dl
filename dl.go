@@ -50,6 +50,20 @@ func downloadUrl(url string, path string) error {
 
 }
 
+func basenameURL(i string) string {
+
+	u, err := url.Parse(i)
+	if err != nil {
+		return ""
+	}
+
+	slice1 := strings.Split(u.Path, "/")
+	filename := slice1[len(slice1)-1]
+
+	return filename
+
+}
+
 func getUrlsFromFile(filename string) ([]string, error) {
 
 	file, err := os.Open(filename)
