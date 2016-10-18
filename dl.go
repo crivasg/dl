@@ -19,6 +19,32 @@ func usage() {
 `, os.Args[0])
 }
 
+func downloadUrl(url string, path string) error {
+
+	// Create the file
+	out, err := os.Create(path)
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+
+	// Get the data
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	// Writer the body to file
+	_, err = io.Copy(out, resp.Body)
+	if err != nil {
+		return err
+	}
+
+	return nil
+
+}
+
 func getUrlsFromFile(filename string) ([]string, error) {
 
 	file, err := os.Open(filename)
