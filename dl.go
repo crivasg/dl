@@ -103,7 +103,7 @@ func main() {
 	for _, url := range urls {
 		fmt.Printf("%s\n", url)
 		basename := basenameURL(url)
-		err = downloadUrl(url, "/tmp/"+basename)
+		err = downloadUrl(url, *outputPath+basename)
 		if err != nil {
 			fmt.Sprintf("%v\n", err)
 		}
