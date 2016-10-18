@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"os"
 	"regexp"
 	"strings"
@@ -101,7 +102,8 @@ func main() {
 
 	for _, url := range urls {
 		fmt.Printf("%s\n", url)
-		err = downloadUrl(url, "/tmp/"+"20161016_atc_evangelical_leader_not_for_trump.mp3")
+		basename := basenameURL(url)
+		err = downloadUrl(url, "/tmp/"+basename)
 	}
 	fmt.Printf("%s", "\n")
 }
