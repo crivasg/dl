@@ -21,13 +21,13 @@ func usage() {
 
 func downloadUrl(url string, path string) error {
 
-    fmt.Printf("path :%s\n", path)
-    fmt.Printf("url :%s\n", url)
+	fmt.Printf("path :%s\n", path)
+	fmt.Printf("url :%s\n", url)
 
 	// Create the file
 	out, err := os.Create(path)
 	if err != nil {
-	    fmt.Printf("error :%v\n", err)
+		fmt.Printf("error :%v\n", err)
 		return err
 	}
 	defer out.Close()
@@ -35,7 +35,7 @@ func downloadUrl(url string, path string) error {
 	// Get the data
 	resp, err := http.Get(url)
 	if err != nil {
-	    fmt.Printf("error :%v\n", err)
+		fmt.Printf("error :%v\n", err)
 		return err
 	}
 	defer resp.Body.Close()
@@ -87,11 +87,9 @@ func main() {
 
 	for _, url := range urls {
 		fmt.Printf("%s\n", url)
+		err = downloadUrl(url, "/tmp/"+"20161016_atc_evangelical_leader_not_for_trump.mp3")
 	}
 	fmt.Printf("%s", "\n")
-
-	err = downloadUrl("https://ondemand.npr.org/anon.npr-mp3/npr/atc/2016/10/20161016_atc_evangelical_leader_not_for_trump.mp3", "/tmp/2016/10/20161016_atc_evangelical_leader_not_for_trump.mp3")
-
 }
 
 // https://github.com/thbar/golang-playground/blob/master/download-files.go
