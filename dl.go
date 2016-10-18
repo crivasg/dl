@@ -104,6 +104,9 @@ func main() {
 		fmt.Printf("%s\n", url)
 		basename := basenameURL(url)
 		err = downloadUrl(url, "/tmp/"+basename)
+		if err != nil {
+			fmt.Sprintf("%v\n", err)
+		}
 	}
 	fmt.Printf("%s", "\n")
 }
