@@ -69,7 +69,7 @@ func getUrlsFromFile(filename string) ([]string, error) {
 func main() {
 
 	flag.Parse()
-	if len(os.Args) != 2 {
+	if len(os.Args) != 3 {
 		usage()
 		return
 	}
