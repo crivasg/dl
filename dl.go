@@ -21,9 +21,13 @@ func usage() {
 
 func downloadUrl(url string, path string) error {
 
+    fmt.Printf("path :%s\n", path)
+    fmt.Printf("url :%s\n", url)
+
 	// Create the file
 	out, err := os.Create(path)
 	if err != nil {
+	    fmt.Printf("error :%v\n", err)
 		return err
 	}
 	defer out.Close()
@@ -31,6 +35,7 @@ func downloadUrl(url string, path string) error {
 	// Get the data
 	resp, err := http.Get(url)
 	if err != nil {
+	    fmt.Printf("error :%v\n", err)
 		return err
 	}
 	defer resp.Body.Close()
