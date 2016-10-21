@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 )
@@ -103,7 +104,8 @@ func main() {
 	for _, url := range urls {
 		fmt.Printf("%s\n", url)
 		basename := basenameURL(url)
-		err = downloadUrl(url, *outputPath+basename)
+		filePath:=filepath.Join(*outputPath, basename)
+		err = downloadUrl(url, filePath)
 		if err != nil {
 			fmt.Sprintf("%v\n", err)
 		}
