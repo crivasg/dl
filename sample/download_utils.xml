@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<downloads>
+    <item name="7-Zip" url="http://www.7-zip.org/a/7z1604-x64.msi" subfolder="7zip" filename="7z1604-x64.msi" hash=""/>
+    <item name="Filezilla" url="https://download.filezilla-project.org/client/FileZilla_3.24.1_win64-setup_bundled.exe" subfolder="filezilla" filename="FileZilla_3.24.1_win64-setup_bundled.exe" hash=""/>
+    <item name="Notepad++" url="https://notepad-plus-plus.org/repository/7.x/7.3.3/npp.7.3.3.Installer.x64.exe" subfolder="notepadpp" filename="npp.7.3.3.Installer.x64.exe" hash=""/>
+<!-- 
+    <item name="Wget" url="" subfolder="wget" filename="" hash=""/>
+    <item name="vim" url="" subfolder="vim" filename="" hash=""/>
+    <item name="tar" url="" subfolder="tar" filename="" hash=""/>
+    <item name="gzip" url="" subfolder="gzip" filename="" hash=""/>
+    <item name="putty" url="https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe" subfolder="putty" filename="putty.exe" hash=""/>
+    <item name="pscp" url="https://the.earth.li/~sgtatham/putty/latest/w64/pscp.exe" subfolder="putty" filename="pscp.exe" hash=""/>
+    <item name="psftp" url="https://the.earth.li/~sgtatham/putty/latest/w64/psftp.exe" subfolder="putty" filename=" psftp.exe" hash=""/>
+ -->
+</downloads>
