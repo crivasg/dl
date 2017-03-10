@@ -12,8 +12,14 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"runtime"
 	"strings"
 )
+
+type File struct {
+	URL  string
+	Path string
+}
 
 type Download struct {
 	Items []Item `xml:"item"`
