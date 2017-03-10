@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	//	"encoding/xml"
 	"flag"
 	"fmt"
 	"io"
@@ -13,8 +14,21 @@ import (
 	"strings"
 )
 
-var outputPath = flag.String("o", "/tmp/", "Output folder")
-var inputFile = flag.String("f", "", "Path the the files containing the urls to download")
+type Download struct {
+	Items []Item `xml:"item"`
+}
+
+type Item struct {
+	Name      string `xml:"name,attr"`
+	Url       string `xml:"url,attr"`
+	Subfolder string `xml:"subfolder,attr"`
+	Filename  string `xml:"filename,attr"`
+	Hash      string `xml:"hash,attr"`
+}
+
+var outputPath = flag.String("output_folder", ``, "Output folder")
+var inputFile = flag.String("input_file", ``, "Path the the files containing the urls to download")
+var xmlFile = flag.String("xml", ``, "Path to the xml file containing the files to download")
 
 func usage() {
 	fmt.Printf(`%s: -f=<URLs Input File> -o=<Output Folder>
