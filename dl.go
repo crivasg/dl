@@ -38,7 +38,7 @@ func downloadUrl(url string, path string) error {
 	// Create the file
 	out, err := os.Create(path)
 	if err != nil {
-		fmt.Printf("error :%v\n", err)
+		fmt.Fprintf(os.Stderr, "dl: %v\n", err)
 		return err
 	}
 	defer out.Close()
@@ -106,7 +106,7 @@ func main() {
 
 	urls, err := getUrlsFromFile(*inputFile)
 	if err != nil {
-		fmt.Sprintf("%v\n", err)
+	    fmt.Fprintf(os.Stderr, "dl: %v\n", err)
 		return
 	}
 
@@ -116,7 +116,7 @@ func main() {
 		filePath := filepath.Join(*outputPath, basename)
 		err = downloadUrl(url, filePath)
 		if err != nil {
-			fmt.Sprintf("%v\n", err)
+			fmt.Fprintf(os.Stderr, "dl: %v\n", err)
 		}
 	}
 	fmt.Printf("%s", "\n")
