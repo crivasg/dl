@@ -110,7 +110,7 @@ func main() {
 	// if non of the file inputs are provided, exit.
 	if len(strings.Trim(*xmlFile, " ")) != 0 && len(strings.Trim(*inputFile, " ")) != 0 {
 		flag.PrintDefaults()
-		return
+		os.Exit(1)
 	}
 
 	// if the outputPath is not provided, set to the TEMP environment variable
@@ -129,7 +129,7 @@ func main() {
 		data, err := ioutil.ReadFile(*xmlFile)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "dup3: %v\n", err)
-			return
+			os.Exit(1)
 		}
 
 		var download Download
