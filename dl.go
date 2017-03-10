@@ -108,14 +108,14 @@ func main() {
 	flag.Parse()
 
 	// if non of the file inputs are provided, exit.
-	if len(strings.Trim(*xmlFile, " ")) != 0 && len(strings.Trim(*input_file, " ")) {
+	if len(strings.Trim(*xmlFile, " ")) != 0 && len(strings.Trim(*inputFile, " ")) != 0 {
 		flag.PrintDefaults()
 		return
 	}
 
 	// if the outputPath is not provided, set to the TEMP environment variable
 	output_dir := *outputPath
-	if len(strings.Trim(*outputPath, " ")) == 0 {
+	if len(strings.Trim(output_dir, " ")) == 0 {
 		if runtime.GOOS == "windows" {
 			output_dir = os.Getenv("TEMP")
 		} else {
@@ -157,7 +157,7 @@ func main() {
 	for _, url := range urls {
 		fmt.Printf("%s\n", url)
 		basename := basenameURL(url)
-		filePath := filepath.Join(*outputPath, basename)
+		filePath := filepath.Join(output_dir, basename)
 		err = downloadUrl(url, filePath)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "dl: %v\n", err)
