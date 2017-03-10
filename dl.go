@@ -30,11 +30,6 @@ var outputPath = flag.String("output_folder", ``, "Output folder")
 var inputFile = flag.String("input_file", ``, "Path the the files containing the urls to download")
 var xmlFile = flag.String("xml", ``, "Path to the xml file containing the files to download")
 
-func usage() {
-	fmt.Printf(`%s: -f=<URLs Input File> -o=<Output Folder>
-`, os.Args[0])
-}
-
 func downloadUrl(url string, path string) error {
 
 	fmt.Printf("path :%s\n", path)
@@ -105,7 +100,7 @@ func main() {
 
 	flag.Parse()
 	if len(os.Args) != 3 {
-		usage()
+		flag.PrintDefaults()
 		return
 	}
 
