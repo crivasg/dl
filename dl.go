@@ -2,10 +2,11 @@ package main
 
 import (
 	"bufio"
-	//	"encoding/xml"
+	"encoding/xml"
 	"flag"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
@@ -20,7 +21,7 @@ type Download struct {
 
 type Item struct {
 	Name      string `xml:"name,attr"`
-	Url       string `xml:"url,attr"`
+	URL       string `xml:"url,attr"`
 	Subfolder string `xml:"subfolder,attr"`
 	Filename  string `xml:"filename,attr"`
 	Hash      string `xml:"hash,attr"`
@@ -99,6 +100,26 @@ func getUrlsFromFile(filename string) ([]string, error) {
 func main() {
 
 	flag.Parse()
+
+	if len(*xmlFile) != 0 {
+
+		data, err := ioutil.ReadFile(*xmlFile)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "dup3: %v\n", err)
+			return
+		}
+
+		var download Download
+		err = xml.Unmarshal(data, &download)
+
+		items := download.Items
+		for _, item := range items {
+			fmt.Fprintf(os.Stdout, "dl: %s\n", item.URL)
+		}
+	}
+
+	return
+
 	if len(os.Args) != 3 {
 		flag.PrintDefaults()
 		return
@@ -106,7 +127,7 @@ func main() {
 
 	urls, err := getUrlsFromFile(*inputFile)
 	if err != nil {
-	    fmt.Fprintf(os.Stderr, "dl: %v\n", err)
+		fmt.Fprintf(os.Stderr, "dl: %v\n", err)
 		return
 	}
 
