@@ -107,7 +107,24 @@ func main() {
 
 	flag.Parse()
 
-	if len(*xmlFile) != 0 {
+	// if non of the file inputs are provided, exit.
+	if len(strings.Trim(*xmlFile, " ")) != 0 && len(strings.Trim(*input_file, " ")) {
+		flag.PrintDefaults()
+		return
+	}
+
+	// if the outputPath is not provided, set to the TEMP environment variable
+	output_dir := *outputPath
+	if len(strings.Trim(*outputPath, " ")) == 0 {
+		if runtime.GOOS == "windows" {
+			output_dir = os.Getenv("TEMP")
+		} else {
+			output_dir = "/tmp"
+		}
+	}
+	fmt.Fprintf(os.Stdout, "Output Dir: %s\n", output_dir)
+
+	if len(strings.Trim(*xmlFile, " ")) != 0 {
 
 		data, err := ioutil.ReadFile(*xmlFile)
 		if err != nil {
