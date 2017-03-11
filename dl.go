@@ -38,9 +38,6 @@ var xmlFile = flag.String("xml", ``, "Path to the xml file containing the files 
 
 func downloadUrl(url string, path string) error {
 
-	fmt.Printf("path :%s\n", path)
-	fmt.Printf("url :%s\n", url)
-
 	// Create the file
 	out, err := os.Create(path)
 	if err != nil {
@@ -146,8 +143,8 @@ func main() {
 		}
 	}
 
-	for _, url := range urls {
-		fmt.Fprintf(os.Stderr, "dl: %v\n", url)
+	for index, url := range urls {
+		fmt.Fprintf(os.Stderr, "dl: %-5d %s --> %s\n", index, url.URL, url.Path)
 	}
 
 	return
