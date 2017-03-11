@@ -122,7 +122,6 @@ func main() {
 	var files2Download []FileD
 
 	if len(strings.Trim(*xmlFile, " ")) != 0 {
-
 		data, err := ioutil.ReadFile(*xmlFile)
 		if err == nil {
 			var download Download
@@ -134,10 +133,7 @@ func main() {
 				files2Download = append(files2Download, FileD{URL: item.URL, Path: fullpath})
 			}
 		}
-
 	}
-
-	fmt.Fprintf(os.Stdout, "dl: %v\n", files2Download)
 
 	if len(strings.Trim(*inputFile, " ")) != 0 {
 
