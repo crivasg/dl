@@ -127,18 +127,16 @@ func main() {
 	if len(strings.Trim(*xmlFile, " ")) != 0 {
 
 		data, err := ioutil.ReadFile(*xmlFile)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "dup3: %v\n", err)
-			os.Exit(1)
-		}
+		if err == nil {
+			var download Download
+			err = xml.Unmarshal(data, &download)
 
-		var download Download
-		err = xml.Unmarshal(data, &download)
-
-		items := download.Items
-		for _, item := range items {
-			fmt.Fprintf(os.Stdout, "dl: %s\n", item.URL)
+			items := download.Items
+			for _, item := range items {
+				fmt.Fprintf(os.Stdout, "dl: %s\n", item.URL)
+			}
 		}
+		
 	}
 
 	return
