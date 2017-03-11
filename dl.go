@@ -136,33 +136,39 @@ func main() {
 	}
 
 	if len(strings.Trim(*inputFile, " ")) != 0 {
+		data, err := ioutil.ReadFile(*inputFile)
+		if err == nil {
+			for _, line := range strings.Split(string(data), "\n") {
+				basename := basenameURL(line)
+				fullpath := filepath.Join(output_dir, basename)
+				files2Download = append(files2Download, FileD{URL: line, Path: fullpath})
+			}
+		}
+	}
 
+	for _, fileD := range files2Download {
+		fmt.Fprintf(os.Stderr, "dl: %v\n", fileD)
 	}
 
 	return
 
-	if len(os.Args) != 3 {
-		flag.PrintDefaults()
-		return
-	}
-
-	urls, err := getUrlsFromFile(*inputFile)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "dl: %v\n", err)
-		return
-	}
-
-	for _, url := range urls {
-		fmt.Printf("%s\n", url)
-		basename := basenameURL(url)
-		filePath := filepath.Join(output_dir, basename)
-		err = downloadUrl(url, filePath)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "dl: %v\n", err)
+	/*
+		for _, url := range urls {
+			fmt.Printf("%s\n", url)
+			basename := basenameURL(url)
+			filePath := filepath.Join(output_dir, basename)
+			err = downloadUrl(url, filePath)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "dl: %v\n", err)
+			}
 		}
-	}
-	fmt.Printf("%s", "\n")
+		fmt.Printf("%s", "\n")
+
+	*/
 }
+
+// test example:
+// ./dl -xml=sample/download_utils.xml -input_file=sample/download_radiolab.txt -output_folder=/tmp
 
 // https://github.com/thbar/golang-playground/blob/master/download-files.go
 // http://stackoverflow.com/questions/11692860/how-can-i-efficiently-download-a-large-file-using-go
