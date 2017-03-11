@@ -16,7 +16,7 @@ import (
 	"strings"
 )
 
-type File struct {
+type FileD struct {
 	URL  string
 	Path string
 }
