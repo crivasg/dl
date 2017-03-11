@@ -145,23 +145,17 @@ func main() {
 
 	for index, url := range urls {
 		fmt.Fprintf(os.Stderr, "dl: %-5d %s --> %s\n", index, url.URL, url.Path)
-	}
+		dirname := filepath.Dir(url.Path)
 
-	return
-
-	/*
-		for _, url := range urls {
-			fmt.Printf("%s\n", url)
-			basename := basenameURL(url)
-			filePath := filepath.Join(output_dir, basename)
-			err = downloadUrl(url, filePath)
-			if err != nil {
-				fmt.Fprintf(os.Stderr, "dl: %v\n", err)
-			}
+		if _, err := os.Stat(dirname); os.IsNotExist(err) {
+			os.Mkdir(dirname, 0777)
 		}
-		fmt.Printf("%s", "\n")
 
-	*/
+		err := downloadUrl(url.URL, url.Path)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "dl: %v\n", err)
+		}
+	}
 }
 
 // test example:
