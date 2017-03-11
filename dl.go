@@ -12,7 +12,6 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-	"runtime"
 	"strings"
 )
 
@@ -120,6 +119,8 @@ func main() {
 	}
 	fmt.Fprintf(os.Stdout, "Output Dir: %s\n", output_dir)
 
+	var files2Download []FileD
+
 	if len(strings.Trim(*xmlFile, " ")) != 0 {
 
 		data, err := ioutil.ReadFile(*xmlFile)
@@ -129,11 +130,14 @@ func main() {
 
 			items := download.Items
 			for _, item := range items {
-				fmt.Fprintf(os.Stdout, "dl: %s\n", item.URL)
+				fullpath := filepath.Join(output_dir, item.Subfolder, item.Filename)
+				files2Download = append(files2Download, FileD{URL: item.URL, Path: fullpath})
 			}
 		}
 
 	}
+
+	fmt.Fprintf(os.Stdout, "dl: %v\n", files2Download)
 
 	if len(strings.Trim(*inputFile, " ")) != 0 {
 
