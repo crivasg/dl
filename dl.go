@@ -119,7 +119,7 @@ func main() {
 		if runtime.GOOS == "windows" {
 			output_dir = os.Getenv("TEMP")
 		} else {
-			output_dir = "/tmp"
+			output_dir = os.TempDir()
 		}
 	}
 	fmt.Fprintf(os.Stdout, "Output Dir: %s\n", output_dir)
