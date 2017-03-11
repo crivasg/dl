@@ -116,11 +116,7 @@ func main() {
 	// if the outputPath is not provided, set to the TEMP environment variable
 	output_dir := *outputPath
 	if len(strings.Trim(output_dir, " ")) == 0 {
-		if runtime.GOOS == "windows" {
-			output_dir = os.Getenv("TEMP")
-		} else {
-			output_dir = os.TempDir()
-		}
+	    output_dir = os.TempDir()
 	}
 	fmt.Fprintf(os.Stdout, "Output Dir: %s\n", output_dir)
 
