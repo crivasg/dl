@@ -107,7 +107,7 @@ func main() {
 	flag.Parse()
 
 	// if non of the file inputs are provided, exit.
-	if len(strings.Trim(*xmlFile, " ")) != 0 && len(strings.Trim(*inputFile, " ")) != 0 {
+	if len(strings.Trim(*xmlFile, " ")) == 0 && len(strings.Trim(*inputFile, " ")) == 0 {
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
