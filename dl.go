@@ -52,6 +52,8 @@ func downloadUrl(url string, path string) error {
 		fmt.Printf("error :%v\n", err)
 		return err
 	}
+	contentlength := resp.ContentLength
+	fmt.Printf("- ContentLength: %.3f MB\n", float64(contentlength)/1024.0/1024.0)
 	defer resp.Body.Close()
 
 	// Writer the body to file
@@ -62,7 +64,7 @@ func downloadUrl(url string, path string) error {
 
 	fileinfo, err1 := os.Stat(path)
 	if err1 == nil {
-		fmt.Fprintf(os.Stdout, "dl: %s %.2fMB\n",
+		fmt.Fprintf(os.Stdout, "dl: %s %.3fMB\n",
 			fileinfo.Name(), float64(fileinfo.Size())/(1024.0*1024.0))
 	}
 
