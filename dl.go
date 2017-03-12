@@ -124,6 +124,11 @@ func main() {
 	}
 	fmt.Fprintf(os.Stdout, "Output Dir: %s\n", output_dir)
 
+	// if the 'output_dir' do not exist, it will created it
+	if _, err := os.Stat(output_dir); os.IsNotExist(err) {
+		os.MkdirAll(output_dir, 0777)
+	}
+
 	var urls []FileD
 
 	if len(strings.Trim(*xmlFile, " ")) != 0 {
