@@ -172,3 +172,4 @@ func main() {
 // https://gist.github.com/mitsuse/a45c99c7e405ed60e5ce
 // https://jawher.me/2015/01/13/parsing-command-line-arguments-shameless-plug-mowcli/
 // https://github.com/tealeg/csv2xlsx/blob/master/main.go
+// http://stackoverflow.com/questions/22421375/how-to-print-the-bytes-while-the-file-is-being-downloaded-golang
