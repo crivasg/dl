@@ -60,6 +60,12 @@ func downloadUrl(url string, path string) error {
 		return err
 	}
 
+	fileinfo, err1 := os.Stat(path)
+	if err1 == nil {
+		fmt.Fprintf(os.Stdout, "dl: %s %.2fMB\n",
+			fileinfo.Name(), float64(fileinfo.Size())/(1024.0*1024.0))
+	}
+
 	return nil
 
 }
@@ -144,11 +150,11 @@ func main() {
 	}
 
 	for index, url := range urls {
-		fmt.Fprintf(os.Stderr, "dl: %-5d %s --> %s\n", index, url.URL, url.Path)
+		fmt.Fprintf(os.Stdout, "dl: %-3d %s --> %s\n", index+1, url.URL, url.Path)
 		dirname := filepath.Dir(url.Path)
 
 		if _, err := os.Stat(dirname); os.IsNotExist(err) {
-			os.Mkdir(dirname, 0777)
+			os.MkdirAll(dirname, 0777)
 		}
 
 		err := downloadUrl(url.URL, url.Path)
